@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A fast, clean task manager built by Teslim Abdulwahab." />
+  <title>Task Manager · Teslim Abdulwahab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">✓</span>
+      <span>Taskflow</span>
+    </div>
+    <div class="top-actions">
+      <button id="viewBtn" class="icon-btn" title="Switch list / board view" aria-label="Switch view">▦</button>
+      <button id="importBtn" class="icon-btn" title="Import tasks (JSON)" aria-label="Import tasks">⬆</button>
+      <input id="importFile" type="file" accept="application/json" hidden />
+      <button id="exportBtn" class="icon-btn" title="Export tasks (JSON)" aria-label="Export tasks">⬇</button>
+      <button id="themeBtn" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow" id="dateLabel"></p>
+        <h1 id="greeting">Today's tasks</h1>
+        <p class="sub" id="summary">No tasks yet</p>
+      </div>
+      <div class="ring-wrap" aria-label="Completion progress">
+        <svg viewBox="0 0 80 80" class="ring">
+          <circle class="ring-bg" cx="40" cy="40" r="34" />
+          <circle class="ring-fg" id="ringFg" cx="40" cy="40" r="34" />
+        </svg>
+        <span class="ring-text" id="ringText">0%</span>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Statistics">
+      <div class="stat"><span id="statTotal">0</span><small>Total</small></div>
+      <div class="stat"><span id="statActive">0</span><small>Active</small></div>
+      <div class="stat"><span id="statDone">0</span><small>Done</small></div>
+      <div class="stat"><span id="statOverdue">0</span><small>Overdue</small></div>
+    </section>
+
+    <section class="panels">
+      <div class="card panel"><h3>Last 7 days</h3><div id="chart" class="chart"></div></div>
+      <div class="card panel"><h3>Focus timer</h3>
+        <div class="timer" id="timer">25:00</div>
+        <div class="timer-btns"><button class="btn primary" id="tStart">Start</button><button class="btn ghost" id="tReset">Reset</button></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <form id="taskForm" class="task-form" autocomplete="off">
+        <input id="taskInput" type="text" maxlength="120" placeholder="What needs to get done?  (press / to focus)" required />
+        <div class="form-row">
+          <select id="prioritySelect" aria-label="Priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+          <select id="categorySelect" aria-label="Category">
+            <option>Personal</option>
+            <option>Work</option>
+            <option>Study</option>
+            <option>Health</option>
+          </select>
+          <input id="dueInput" type="date" aria-label="Due date" />
+          <button type="submit" class="btn primary">Add</button>
+        </div>
+      </form>
+
+      <div class="toolbar">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-filter="all" role="tab">All</button>
+          <button class="tab" data-filter="active" role="tab">Active</button>
+          <button class="tab" data-filter="completed" role="tab">Completed</button>
+        </div>
+        <div class="tools">
+          <input id="searchInput" type="search" placeholder="Search…" aria-label="Search tasks" />
+          <select id="sortSelect" aria-label="Sort tasks">
+            <option value="manual">Manual order</option>
+            <option value="priority">Priority</option>
+            <option value="due">Due date</option>
+            <option value="newest">Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <ul id="taskList" class="task-list"></ul>
+      <div id="board" class="board" hidden></div>
+
+      <div id="emptyState" class="empty">
+        <div class="empty-icon">🗒️</div>
+        <p>Nothing here yet. Add your first task above.</p>
+      </div>
+
+      <div class="card-footer">
+        <span id="leftCount">0 items left</span>
+        <button id="clearBtn" class="btn ghost">Clear completed</button>
+      </div>
+    </section>
+
+    <p class="hint">Tip: double-click a task to edit · drag to reorder · press <kbd>/</kbd> to add</p>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Teslim Abdulwahab</span>
+    <span class="links">
+      <a href="https://github.com/Alajagusi12" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/teslim-alajagusi-3ab347438" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
