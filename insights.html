@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights · Taskflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="logo" aria-hidden="true">✓</span><span>Taskflow</span></a>
+    <div class="top-actions">
+      <a class="icon-btn" href="index.html" title="Back to tasks" aria-label="Back to tasks">←</a>
+      <button id="printBtn" class="icon-btn" title="Print or save as PDF" aria-label="Print">🖨</button>
+      <button id="themeBtn" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Insights</p>
+        <h1>Your productivity</h1>
+        <p class="sub" id="headline"></p>
+      </div>
+      <div class="ring-wrap" aria-label="Completion rate">
+        <svg viewBox="0 0 80 80" class="ring"><circle class="ring-bg" cx="40" cy="40" r="34" /><circle class="ring-fg" id="ringFg" cx="40" cy="40" r="34" /></svg>
+        <span class="ring-text" id="ringText">0%</span>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><span id="kTotal">0</span><small>Total</small></div>
+      <div class="stat"><span id="kWeek">0</span><small>Done this week</small></div>
+      <div class="stat"><span id="kBest">0</span><small>Best day</small></div>
+      <div class="stat"><span id="kOverdue">0</span><small>Overdue</small></div>
+    </section>
+
+    <section class="card ins">
+      <h3>Last 30 days</h3>
+      <div id="heatmap" class="heatmap"></div>
+      <p class="hint" style="text-align:left">Darker squares mean more tasks completed that day.</p>
+    </section>
+
+    <section class="grid2">
+      <div class="card ins"><h3>By category</h3><div id="byCat"></div></div>
+      <div class="card ins"><h3>By priority</h3><div id="byPri"></div></div>
+    </section>
+
+    <section class="card ins">
+      <h3>Due soon</h3>
+      <ul id="dueList" class="due-list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Teslim Abdulwahab</span>
+    <span class="links">
+      <a href="https://github.com/Alajagusi12" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/teslim-alajagusi-3ab347438" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
+  </footer>
+  <script src="insights.js"></script>
+</body>
+</html>
